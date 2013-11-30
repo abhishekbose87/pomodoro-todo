@@ -8,8 +8,10 @@
 <div class="tasks">
     <% @tasks.each do |task| %>
       <li class="task" value="<%=task.id%>">
-        <%= task.desc %>
-        <%= task.score %>
+      <%= task.desc %>
+      <% (1..task.score).each do  %>
+        <%= image_tag("tick.png") %>
+      <% end %>
         <div class="edit">
         <%= link_to 'Show', task %>
         <%= link_to 'Edit', edit_task_path(task) %>

@@ -3,6 +3,7 @@ var pomodoroTime= 3;
 var rowid;
 
 $(document).ready(function(){
+  $('.task').first().addClass('highlighted');
   $('.task').on('click',function(){
     $('.highlighted').removeClass('highlighted');
     $(this).addClass('highlighted');
