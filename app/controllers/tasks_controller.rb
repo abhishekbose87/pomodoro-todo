@@ -28,7 +28,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to :root, notice: 'Task was successfully created.' }
         format.json { render action: 'show', status: :created, location: @task }
       else
         format.html { render action: 'new' }
@@ -40,9 +40,10 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @task.increment_score
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to :root, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +57,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to :root }
       format.json { head :no_content }
     end
   end
@@ -64,11 +65,17 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
+      #Abhishek set a default value for params if not declared
+      #params[:id] = 1 
+
       @task = Task.find(params[:id])
+      #p @task
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:desc, :score)
+    # params.require(:task).permit(:desc, :score)
+     params.fetch(:task, {}).permit(:desc, :score)
+      #params.require(:task).permit()
     end
 end

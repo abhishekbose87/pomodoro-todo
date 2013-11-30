@@ -5,29 +5,25 @@
 
 <h1>Your tasks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Count</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="tasks">
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.desc %></td>
-        <td><%= task.score %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <li class="task" value="<%=task.id%>">
+        <%= task.desc %>
+        <%= task.score %>
+        <div class="edit">
+        <%= link_to 'Show', task %>
+        <%= link_to 'Edit', edit_task_path(task) %>
+        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </li>
     <% end %>
-  </tbody>
-</table>
+</div>
+
+<form style="display: hidden" action="/update" method="PATCH" id="form">
+         <input type="hidden" id="task_id" name="id" value=""/> 
+</form>
+
+
 
 <br>
 

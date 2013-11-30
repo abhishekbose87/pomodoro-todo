@@ -1,6 +1,11 @@
 Todoapp::Application.routes.draw do
 
   root  'tasks#index'
+  
+  match "/update", to: 'tasks#update' , via: 'get'
+ # match '/update',  to: 'tasks#update',           via: 'get'
+ # match '/signup',  to: 'users#new',            via: 'get'
+
   resources :tasks
 
   # The priority is based upon order of creation: first created -> highest priority.

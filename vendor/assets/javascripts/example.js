@@ -1,5 +1,35 @@
 var clock;
 var pomodoroTime= 3;
+var rowid;
+
+$(document).ready(function(){
+  $('.task').on('click',function(){
+    $('.highlighted').removeClass('highlighted');
+    $(this).addClass('highlighted');
+    rowid = $(this).attr('value');
+    //alert("Id = "+ rowid);
+  });
+});
+
+function confirmFunction()
+{
+var r = confirm("Was that a pomodoro ??");
+//alert("Outside if");
+      if (r == true)
+  {
+    //alert("Inside true");
+    //var id = $('.highlighted').text();
+   // alert("Id = "+id.val());
+      $("#task_id").val(rowid);
+     //   alert(newurl);
+     $("#form").submit();
+  //window.location.replace(newurl);
+  }
+else
+  {
+  alert("Last pomdoro was cancelled");
+  }
+}
 
 			$(document).ready(function() {
 
@@ -25,8 +55,11 @@ var pomodoroTime= 3;
     //notification.onclose = function() { ... do something else ... };
 
     notification.onclick = function () {
+      //window.focus();
+      //window.open("localhost:3000");
       window.focus();
-      //window.open("http://stackoverflow.com/a/13328397/1269037");
+      var r = confirmFunction();
+      
       notification.close();
     }    
 
@@ -50,6 +83,9 @@ var pomodoroTime= 3;
 				$('.stop').click(function() {
 					clock.stop();
 				});
+
+
+
 
 // check for notifications support
 // you can omit the 'window' keyword
