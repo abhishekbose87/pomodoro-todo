@@ -7,9 +7,8 @@ $(document).ready(function(){
   $('.task').on('click',function(){
     $('.highlighted').removeClass('highlighted');
     $(this).addClass('highlighted');
-    rowid = $(this).attr('value');
-    //alert("Id = "+ rowid);
   });
+  rowid = $('.highlighted').attr('value');
 });
 
 function confirmFunction()
@@ -44,6 +43,8 @@ else
 //alert('Did you successfully complete a pomodoro ?? ');
                                      // alertEndofPomodoro();
                                      //alert('Did you successfully complete a pomodoro ?? ');
+                                     //
+                            if(clock.getTime() == 0 ) {
   if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
     // function defined in step 2
     //alert('Did you successfully complete a pomodoro ?? ');
@@ -51,7 +52,7 @@ else
 
  notification = window.webkitNotifications.createNotification(
       'http://i.stack.imgur.com/dmHl0.png', 'EXECUTE notification!',
-      'Have you finished one pomodoro of work');
+      'One pomodoro of work has finished');
     //notification.ondisplay = function() { ... do something ... };
     //notification.onclose = function() { ... do something else ... };
 
@@ -68,6 +69,7 @@ else
   } else {
     window.webkitNotifications.requestPermission();
   }
+                            }
 		        	}
 		        }
         		});
