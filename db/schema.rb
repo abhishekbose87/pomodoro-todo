@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20131130073902) do
 
   create_table "tasks", force: true do |t|
     t.string   "desc"
-    t.integer  "score"
+    t.integer  "score",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

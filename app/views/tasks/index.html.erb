@@ -1,10 +1,15 @@
-<h1>Listing tasks</h1>
+<div class="your-clock">   
+</div>
+<button type="button" class="start" style="margin: 25px; font-size: 20px; padding: 15px;">Start</button>
+<button type="button" class="stop" style="margin: 25px; font-size: 20px; padding: 15px;">Stop</button>
+
+<h1>Your tasks</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Desc</th>
-      <th>Score</th>
+      <th>Description</th>
+      <th>Count</th>
       <th></th>
       <th></th>
       <th></th>
@@ -27,3 +32,6 @@
 <br>
 
 <%= link_to 'New Task', new_task_path %>
+<%= javascript_include_tag('flipclock/flipclock.min.js') %>
+<%= javascript_include_tag('example.js') %>
+
