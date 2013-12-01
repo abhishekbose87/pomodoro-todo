@@ -1,0 +1,10 @@
+<%= div_for(task, :value => task.id) do %>
+      <%= task.desc %>
+      <% (1..task.score).each do  %>
+        <%= image_tag("tick.png") %>
+      <% end %>
+        <div class="actions">
+        <%= link_to 'Edit', edit_task_path(task) %>
+        <%= link_to 'Delete', task, method: :delete %>
+      </div>
+<% end %>

@@ -1,19 +1,22 @@
 var clock;
-var pomodoroTime= 3;
+var pomodoroTime= 5;
 var rowid;
 
 $(document).ready(function(){
-  $('.task').first().addClass('highlighted');
-  $('.task').on('click',function(){
+$('.task').filter(":first").addClass('highlighted');
+$('#tasks').on('click','.task',function(){
     $('.highlighted').removeClass('highlighted');
     $(this).addClass('highlighted');
+    rowid = $('.highlighted').attr('value');
+    //alert(rowid);
   });
-  rowid = $('.highlighted').attr('value');
+
 });
+
 
 function confirmFunction()
 {
-var r = confirm("Was that a pomodoro ??");
+var r = confirm("I am putting a tick in there !! ");
 //alert("Outside if");
       if (r == true)
   {
@@ -21,8 +24,8 @@ var r = confirm("Was that a pomodoro ??");
     //var id = $('.highlighted').text();
    // alert("Id = "+id.val());
       $("#task_id").val(rowid);
-     //   alert(newurl);
-     $("#form").submit();
+        //alert("Before reaching" + rowid);
+     $("#hidden_form").submit();
   //window.location.replace(newurl);
   }
 else

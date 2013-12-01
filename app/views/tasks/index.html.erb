@@ -1,35 +1,53 @@
-<div class="your-clock">   
-</div>
+<div class= "row-fluid">
+  <div class= "span5">
+    <div class="your-clock">   </div>
+    <% count = @tasks.count %>
+      
 <button type="button" class="start" style="margin: 25px; font-size: 20px; padding: 15px;">Start</button>
 <button type="button" class="stop" style="margin: 25px; font-size: 20px; padding: 15px;">Stop</button>
+      
+  </div>
+  <div class="span6">
+    <div class= "stats">
+      <% worked_count = @tasks.worked.count %>
+      <!--<form action="/create" method="post">
+        <input type="textbox" placeholder="Start typing what's in ur head">
+        <input type="submit" value="Create task">
+      </form> -->
 
-<h1>Your tasks</h1>
-
-<div class="tasks">
-    <% @tasks.each do |task| %>
-      <li class="task" value="<%=task.id%>">
-      <%= task.desc %>
-      <% (1..task.score).each do  %>
-        <%= image_tag("tick.png") %>
-      <% end %>
-        <div class="edit">
-        <%= link_to 'Show', task %>
-        <%= link_to 'Edit', edit_task_path(task) %>
-        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= form_for(Task.new, remote: true) do |f| %>
+        <div class="field">
+          <%= f.text_field :desc, :placeholder => "Start typing here .." %>
+          <!--<input type="text" name="desc" placeholder="Start typing here .. "> -->
         </div>
-      </li>
+        <div class="actions">
+        <%= f.submit %>
+      </div>
+      <% end %>
+      
+      <% if worked_count != 0 %>
+    <div class="message">You have worked on <%= pluralize(worked_count, 'task') %> today
+      and spent a total time of <%= Task.sum('score')* (Todoapp::Application.config.pomodoro_time)/60 %> mins on them :) </div>    
+  <% else %>
+      <div class="message">Hey lucky guy, you do not have anything on your plate now :)</div>
+  <% end %> 
+</div>
+<h2> <%= link_to 'Clean your slate ? ', "./clear",method: :delete, data: { confirm: 'Are you sure?' } %> </div>
+  </h2>
+</div>
+
+<div id="tasks">
+    <% @tasks.each do |task| %>
+      <%= render task %>
     <% end %>
 </div>
 
-<form style="display: hidden" action="/update" method="PATCH" id="form">
+</br>
+
+<form style="display: hidden" action="/update" data-method="patch" id="hidden_form" data-remote="true">
          <input type="hidden" id="task_id" name="id" value=""/> 
 </form>
 
-
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
 <%= javascript_include_tag('flipclock/flipclock.min.js') %>
 <%= javascript_include_tag('example.js') %>
 

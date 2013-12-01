@@ -3,6 +3,8 @@ Todoapp::Application.routes.draw do
   root  'tasks#index'
   
   match "/update", to: 'tasks#update' , via: 'get'
+  match "/clear", to: 'tasks#destroyall' , via: 'delete'
+  match "/create", to: 'tasks#create' , via: 'post'
  # match '/update',  to: 'tasks#update',           via: 'get'
  # match '/signup',  to: 'users#new',            via: 'get'
 

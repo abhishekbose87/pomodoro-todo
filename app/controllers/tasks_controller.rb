@@ -34,6 +34,7 @@ class TasksController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
+      format.js
     end
   end
 
@@ -59,6 +60,17 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :root }
       format.json { head :no_content }
+      #format.js
+    end
+  end
+
+  def destroyall
+    @tasks = Task.all
+    @tasks.each { |task| task.destroy }
+    respond_to do |format|
+      format.html { redirect_to :root, notice: "Your tasks have been nuked" }
+      format.json { head :no_content }
+      #format.js
     end
   end
 

@@ -1,0 +1,6 @@
+<% if @task.new_record? %>
+  $('input#task_desc').effect('highlight', { color: 'red' });
+<% else %>  
+  $('div#tasks').append("<%= escape_javascript(render @task) %>");
+  $('div#<%= dom_id(@task) %>').effect('highlight');
+<% end %> 

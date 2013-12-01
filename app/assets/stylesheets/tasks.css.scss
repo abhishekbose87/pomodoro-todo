@@ -9,7 +9,7 @@
   font-size: 16px;
   font-style: myriad, sans-serif;
 
-  .edit{
+  .actions{
       text-align: right;
       font-size: 10px;
   }
@@ -22,6 +22,15 @@ background-color: red;
 li { list-style: none; 
 }
 
+.stats{
+  border: 2px groove;
+  padding: 10px;
+}
+
+a:hover{
+  opacity: 1;
+  color: #FFF;
+}
 
 
 .highlighted{
