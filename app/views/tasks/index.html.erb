@@ -29,7 +29,7 @@
     <div class="message">You have worked on <%= pluralize(worked_count, 'task') %> today
       and spent a total time of <%= Task.sum('score')* (Todoapp::Application.config.pomodoro_time)/60 %> mins on them :) </div>    
   <% else %>
-      <div class="message">Hey lucky guy, you do not have anything on your plate now :)</div>
+      <div class="message">You do not have anything on your plate now :)</div>
   <% end %> 
 </div>
 <h2> <%= link_to 'Clean your slate ? ', "./clear",method: :delete, data: { confirm: 'Are you sure?' } %> </div>
