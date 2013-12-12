@@ -21,10 +21,10 @@ module Todoapp
     # config.i18n.default_locale = :de
     
     config.pomodoro_time=1800
-    config.assets.compile = true
-    config.serve_static_assets = true
+    #config.assets.compile = true
+    #config.serve_static_assets = true
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
-    config.assets.compile = ['*.js', '*.css']
+    #config.assets.compile = ['*.js', '*.css']
     #config.assets.precompile += Dir[Rails.root + "vendor/assets/javascripts/*"].map { |path| File.basename(path).slice(/.*\.js/) }
     #config.assets.precompile += Dir[Rails.root + "vendor/assets/stylesheets/*"].map { |path| File.basename(path).slice(/.*\.css/) }
   end
