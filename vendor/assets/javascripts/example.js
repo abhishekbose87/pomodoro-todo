@@ -16,82 +16,80 @@ $('#tasks').on('click','.task',function(){
 
 function confirmFunction()
 {
-var r = confirm("I am putting a tick in there !! ");
-//alert("Outside if");
-      if (r == true)
+  var r = confirm("I am putting a tick in there !! ");
+  //alert("Outside if");
+  if (r == true)
   {
     //alert("Inside true");
     //var id = $('.highlighted').text();
-   // alert("Id = "+id.val());
-      $("#task_id").val(rowid);
-        //alert("Before reaching" + rowid);
-     $("#hidden_form").submit();
-  //window.location.replace(newurl);
+    // alert("Id = "+id.val());
+    $("#task_id").val(rowid);
+    //alert("Before reaching" + rowid);
+    $("#hidden_form").submit();
+    //window.location.replace(newurl);
   }
-else
+  else
   {
-  alert("Last pomdoro was cancelled");
+    alert("Last pomdoro was cancelled");
   }
 }
 
-			$(document).ready(function() {
+$(document).ready(function() {
 
-                          //alert("I am inside example.js");
-				 clock = $('.your-clock').FlipClock(pomodoroTime, {
-		        clockFace: 'MinuteCounter',
-		        autoStart: false,
-		        callbacks: {
-		        	stop: function() {
-		        	//	$('.message').html('Did you successfully complete a pomodoro ?? ');
-//alert('Did you successfully complete a pomodoro ?? ');
-                                     // alertEndofPomodoro();
-                                     //alert('Did you successfully complete a pomodoro ?? ');
-                                     //
-                            if(clock.getTime() == 0 ) {
-  if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
-    // function defined in step 2
-    //alert('Did you successfully complete a pomodoro ?? ');
-   
+  //alert("I am inside example.js");
+  clock = $('.your-clock').FlipClock(pomodoroTime, {
+    clockFace: 'MinuteCounter',
+    autoStart: false,
+    callbacks: {
+      stop: function() {
+      //	$('.message').html('Did you successfully complete a pomodoro ?? ');
+      //alert('Did you successfully complete a pomodoro ?? ');
+      // alertEndofPomodoro();
+      //alert('Did you successfully complete a pomodoro ?? ');
+      //
+      if(clock.getTime() == 0 ) {
+        if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
+        // function defined in step 2
+        //alert('Did you successfully complete a pomodoro ?? ');
 
- notification = window.webkitNotifications.createNotification(
-      'http://i.stack.imgur.com/dmHl0.png', 'EXECUTE notification!',
-      'One pomodoro of work has finished');
-    //notification.ondisplay = function() { ... do something ... };
-    //notification.onclose = function() { ... do something else ... };
 
-    notification.onclick = function () {
-      //window.focus();
-      //window.open("localhost:3000");
-      window.focus();
-      var r = confirmFunction();
-      
-      notification.close();
-    }    
+        notification = window.webkitNotifications.createNotification(
+        'http://i.stack.imgur.com/dmHl0.png', 'EXECUTE notification!',
+        'One pomodoro of work has finished');
+        //notification.ondisplay = function() { ... do something ... };
+        //notification.onclose = function() { ... do something else ... };
 
-    notification.show();
-  } else {
-    window.webkitNotifications.requestPermission();
+        notification.onclick = function () {
+        //window.focus();
+        //window.open("localhost:3000");
+        window.focus();
+        var r = confirmFunction();
+
+        notification.close();
+        }    
+
+        notification.show();
+        } else {
+        window.webkitNotifications.requestPermission();
+        }
+      }
+    }
   }
-                            }
-		        	}
-		        }
-        		});
-                                
-			});
+  });                                
 
-                  // Attach a click event to a button a increment the clock
-				$('.start').click(function() {
-                                        clock.setTime(pomodoroTime);
-                                        clock.setCountdown(true);
-					clock.start();
-				});
+  // Attach a click event to a button a increment the clock
 
-				$('.stop').click(function() {
-					clock.stop();
-				});
+  $('.start').click(function() {
+    clock.setTime(pomodoroTime);
+    clock.setCountdown(true);
+    clock.start();
+  });
 
+  $('.stop').click(function() {
+    clock.stop();
+  });
 
-
+});
 
 // check for notifications support
 // you can omit the 'window' keyword
