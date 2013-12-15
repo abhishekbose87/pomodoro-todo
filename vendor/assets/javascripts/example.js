@@ -1,6 +1,7 @@
 var clock;
 var pomodoroTime= 5;
 var rowid;
+var notification;
 
 $(document).ready(function(){
 $('.task').filter(":first").addClass('highlighted');
@@ -45,31 +46,32 @@ $(document).ready(function() {
       //	$('.message').html('Did you successfully complete a pomodoro ?? ');
       //alert('Did you successfully complete a pomodoro ?? ');
       // alertEndofPomodoro();
-      //alert('Did you successfully complete a pomodoro ?? ');
+      alert('Before checking whether time == 0 ');
       //
       if(clock.getTime() == 0 ) {
         if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
-        // function defined in step 2
-        //alert('Did you successfully complete a pomodoro ?? ');
+          // function defined in step 2
+          alert('Did you successfully complete a pomodoro ?? ');
 
 
-        notification = window.webkitNotifications.createNotification(
-        'http://i.stack.imgur.com/dmHl0.png', 'EXECUTE notification!',
-        'One pomodoro of work has finished');
-        //notification.ondisplay = function() { ... do something ... };
-        //notification.onclose = function() { ... do something else ... };
+          notification = window.webkitNotifications.createNotification(
+          'http://i.stack.imgur.com/dmHl0.png', 'EXECUTE notification!',
+          'One pomodoro of work has finished');
+          //notification.ondisplay = function() { ... do something ... };
+          //notification.onclose = function() { ... do something else ... };
 
-        notification.onclick = function () {
-        //window.focus();
-        //window.open("localhost:3000");
-        window.focus();
-        var r = confirmFunction();
+          notification.onclick = function () {
+          //window.focus();
+          //window.open("localhost:3000");
+          window.focus();
+          var r = confirmFunction();
 
-        notification.close();
-        }    
+          notification.close();
+          }
 
         notification.show();
-        } else {
+        } 
+        else {
         window.webkitNotifications.requestPermission();
         }
       }

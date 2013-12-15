@@ -13,8 +13,11 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
+
+//= require ../../../vendor/assets/javascripts/flipclock/libs/base.js
+//= require ../../../vendor/assets/javascripts/flipclock/flipclock.js
+//= require ../../../vendor/assets/javascripts/example
 //= require_tree .
-//= require_tree ../../../vendor/assets/javascripts/.
 
 $(function() {
    $('.alert').delay(500).fadeIn('normal', function() {
