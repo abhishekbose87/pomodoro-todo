@@ -18,6 +18,7 @@
 //= require ../../../vendor/assets/javascripts/flipclock/flipclock.js
 //= require ../../../vendor/assets/javascripts/example
 //= require_tree .
+//= require_self
 
 $(function() {
    $('.alert').delay(500).fadeIn('normal', function() {

@@ -4,20 +4,31 @@ var rowid;
 var notification;
 
 $(document).ready(function(){
-$('.task').filter(":first").addClass('highlighted');
-$('#tasks').on('click','.task',function(){
-    $('.highlighted').removeClass('highlighted');
-    $(this).addClass('highlighted');
-    rowid = $('.highlighted').attr('value');
-    //alert(rowid);
-  });
+  $('.task').filter(":first").addClass('highlighted');
+});
 
+$('#tasks').on('click','.task',function(){
+      $('.highlighted').removeClass('highlighted');
+      $(this).addClass('highlighted');
+      rowid = $('.highlighted').attr('value');
+      //alert(rowid);
+    });
+
+$('.setTime').on('click',function(){
+  pomodoroTime = parseInt($('.time').val());
+  //alert ( pomodoroTime );
+  if ( isNaN(pomodoroTime)) {
+    pomodoroTime=25;
+    alert("Invalid data: Setting default value of 25 mins")
+  } 
+  else { alert("Pomodoro time is now "+ pomodoroTime + " mins"); } 
+  clock.setTime(pomodoroTime*60);
 });
 
 
 function confirmFunction()
 {
-  var r = confirm("Was the last pomodoro successfull ");
+  var r = confirm("Was the last pomodoro successfull ?");
   //alert("Outside if");
   if (r == true)
   {
@@ -46,6 +57,7 @@ $(document).ready(function() {
     clockFace: 'MinuteCounter',
     autoStart: false,
     callbacks: {
+
       stop: function() {
       //	$('.message').html('Did you successfully complete a pomodoro ?? ');
       //alert('Did you successfully complete a pomodoro ?? ');
@@ -84,6 +96,7 @@ $(document).ready(function() {
         } */
 
         window.focus();
+
         //window.open("localhost:3000");
         var r = confirmFunction();
 

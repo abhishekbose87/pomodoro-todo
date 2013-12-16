@@ -1,10 +1,12 @@
 <div class= "row-fluid">
-  <div class= "span5">
+  <div class= "span6">
     <div class="your-clock">   </div>
     <% count = @tasks.count %>
       
-<button type="button" class="start" style="margin: 25px; font-size: 20px; padding: 15px;">Start</button>
-<button type="button" class="stop" style="margin: 25px; font-size: 20px; padding: 15px;">Stop</button>
+<button type="button" class="start" style="margin: 15px; font-size: 20px; padding: 5px;">Start</button>
+<button type="button" class="stop" style="margin: 15px; font-size: 20px; padding: 5px;">Stop</button>
+  <input type="text" class="time" style="width: 50px; margin: 15px; font-size: 20px; padding: 5px;" placeholder="mins">
+  <button type="button" class="setTime" style="margin: 15px; font-size: 20px; padding: 5px;">Set Time</button>
       
   </div>
   <div class="span6">
@@ -26,8 +28,9 @@
       <% end %>
       
       <% if worked_count != 0 %>
-    <div class="message">You have worked on <%= pluralize(worked_count, 'task') %> today
-      and spent a total time of <%= Task.sum('score')* (Todoapp::Application.config.pomodoro_time)/60 %> mins on them :) </div>    
+    <div class="message">You have worked on <%= pluralize(worked_count, 'task') %> today :)
+     <!-- and spent a total time of <%= Task.sum('score')* (Todoapp::Application.config.pomodoro_time)/60 %> mins on them :)   -->
+    </div>    
   <% else %>
       <div class="message">You do not have anything on your plate now :)</div>
   <% end %> 
