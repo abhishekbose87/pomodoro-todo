@@ -17,22 +17,26 @@ $('#tasks').on('click','.task',function(){
 
 function confirmFunction()
 {
-  var r = confirm("I am putting a tick in there !! ");
+  var r = confirm("Was the last pomodoro successfull ");
   //alert("Outside if");
   if (r == true)
   {
     //alert("Inside true");
     //var id = $('.highlighted').text();
     // alert("Id = "+id.val());
+    if(rowid == null){
+      rowid=$('.highlighted').attr('value');
+      //alert("I gotcha the value");
+    }
     $("#task_id").val(rowid);
     //alert("Before reaching" + rowid);
     $("#hidden_form").submit();
     //window.location.replace(newurl);
   }
-  else
+  /*else
   {
-    alert("Last pomdoro was cancelled");
-  }
+   // alert("Last pomdoro was cancelled");
+  } */
 }
 
 $(document).ready(function() {
@@ -48,15 +52,19 @@ $(document).ready(function() {
       // alertEndofPomodoro();
       
       //
+      //var notifier = new Notifier();
+
       if(clock.getTime() == 0 ) {
-        if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
+        
+        /*if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
           // function defined in step 2
           alert('checkPermission == 0 ');         
         } 
-        else {
+        else { 
         window.webkitNotifications.requestPermission();
+        notifier.RequestPermission();
         alert('Received permission');
-        }
+        //}
         alert('Before creating Notification ');
         notification = window.webkitNotifications.createNotification(
         'http://i.stack.imgur.com/dmHl0.png', 'EXECUTE notification!',
@@ -66,14 +74,19 @@ $(document).ready(function() {
 
         notification.show();
         alert('After creating Notification ');
-        notification.onclick = function (){
+
+        notification.onclick = function(){
           //window.focus();
           //window.open("localhost:3000");
-          window.focus();
-          var r = confirmFunction();
+          
 
           notification.close();
-        }
+        } */
+
+        window.focus();
+        //window.open("localhost:3000");
+        var r = confirmFunction();
+
       }
     }
   }
@@ -104,7 +117,7 @@ else {
 
 function alertEndofPomodoro()
 {
-  alert('Did you successfully complete a pomodoro ?? ');
+  alert('Did you successfully complete a pomodoro ??');
   if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
     // function defined in step 2
     notification_test = window.webkitNotifications.createNotification(
@@ -117,3 +130,4 @@ function alertEndofPomodoro()
     window.webkitNotifications.requestPermission();
   }
 }
+
